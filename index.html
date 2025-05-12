@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Quan ly tuyen sinh</title>
+</head>
+<body class="bg-gradient-to-r from-blue-100 via-white to-purple-100 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-2xl">
+    <!-- Quản lý tuyển sinh -->
+    <h2 class="text-2xl font-bold text-center text-blue-600 mb-6">Quản lý tuyển sinh</h2>
+
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <input type="number" id="inputScore1" placeholder="Điểm chuẩn" class="p-3 border rounded-lg w-full focus:ring-2 focus:ring-blue-400" />
+
+      <select id="selLocation" class="p-3 border rounded-lg w-full focus:ring-2 focus:ring-blue-400">
+        <option value="0">Chọn khu vực</option>
+        <option value="2">A</option>
+        <option value="1">B</option>
+        <option value="0.5">C</option>
+      </select>
+      <select id="selUser" class="p-3 border rounded-lg w-full focus:ring-2 focus:ring-blue-400">
+        <option value="0">Chọn đối tượng</option>
+        <option value="2.5">1</option>
+        <option value="1.5">2</option>
+        <option value="1">3</option>
+      </select>
+
+      <input type="number" id="inputScore2" placeholder="Điểm môn thứ 1" class="p-3 border rounded-lg w-full focus:ring-2 focus:ring-blue-400" />
+      <input type="number" id="inputScore3" placeholder="Điểm môn thứ 2" class="p-3 border rounded-lg w-full focus:ring-2 focus:ring-blue-400" />
+      <input type="number" id="inputScore4" placeholder="Điểm môn thứ 3" class="p-3 border rounded-lg w-full focus:ring-2 focus:ring-blue-400" />
+
+      <div class="col-span-1 md:col-span-2 flex justify-center">
+        <button type="button" id="btnResult" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300" onclick="onSubmit()">
+          Kết Quả
+        </button>
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <div class="text-center text-green-600 font-semibold text-lg mt-4" id="txtResult"></div>
+      </div>
+    </form>
+
+    <!-- Tính tiền điện -->
+    <hr class="my-6 border-t-2" />
+    <h2 class="text-2xl font-bold text-center text-purple-600 mb-6">Tính tiền điện</h2>
+
+    <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <input type="text" id="inputName" placeholder="Nhập họ tên" class="p-3 border rounded-lg w-full focus:ring-2 focus:ring-purple-400" />
+      <input type="number" id="inputKW" placeholder="Nhập số kw" class="p-3 border rounded-lg w-full focus:ring-2 focus:ring-purple-400" />
+
+      <div class="col-span-1 md:col-span-2 flex justify-center">
+        <button type="button" id="btnElecBill" class="bg-purple-500 text-white px-6 py-3 rounded-lg hover:bg-purple-600 transition duration-300" onclick="onSubmit1()">
+          Tính tiền điện
+        </button>
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <div class="text-center text-green-600 font-semibold text-lg mt-4" id="txtElecBill"></div>
+      </div>
+    </form>
+    <!-- tinh thue -->
+ <hr class="my-6 border-t-2" />
+  <div class="p-6" id="bai3">
+  <h4 class="text-2xl font-bold text-blue-600 mb-4"> Tính thuế thu nhập cá nhân</h4>
+  <form class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div>
+      <input type="text" id="inputName2" placeholder="Nhập họ tên"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div>
+      <input type="number" id="inputSalary" placeholder="Tổng thu nhập năm"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+    <div>
+      <input type="number" id="inputUser" placeholder="Số người phụ thuộc"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="col-span-1 lg:col-span-3">
+      <button type="button" id="btnTax"
+        class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition" onclick="onSubmit2()">
+        Tính tiền thuế
+      </button>
+    </div>
+
+    <div class="col-span-1 lg:col-span-3">
+      <div class="bg-green-100 text-green-700 p-4 rounded-lg">
+       <span id="txtTax" class="font-semibold"></span>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- tinh tien cap  -->
+<hr class="my-6 border-t-2" />
+  <div class="tab-pane fade" id="bai4" role="tabpanel" aria-labelledby="v-pills-home-tab">
+  <h4 class="text-xl font-semibold mb-4"> Tính tiền cáp</h4>
+
+  <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div>
+      <select class="w-full p-2 border rounded" id="selCustomer" onchange="disableInput()">
+        <option value="user">Nhà Dân</option>
+        <option value="company">Doanh Nghiệp</option>
+      </select>
+    </div>
+
+    <div>
+      <input type="text" class="w-full p-2 border rounded" id="inputID" placeholder="Nhập mã khách hàng">
+    </div>
+
+    <div>
+      <input type="number" class="w-full p-2 border rounded" id="inputChanel" placeholder="Số kênh cao cấp">
+    </div>
+
+    <div>
+      <input type="number" class="w-full p-2 border rounded hidden" id="inputConnect" placeholder="Số kết nối">
+    </div>
+
+    <div class="col-span-full">
+      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" type="button" onclick="calculateCableBill()">Tính tiền cáp</button>
+    </div>
+
+    <div class="col-span-full">
+      <div class="bg-green-100 text-green-800 p-2 rounded">
+        <span id="txtNet"></span>
+      </div>
+    </div>
+  </form>
+</div>
+
+  </div>
+
+  <!-- <script src="/quanlytuyensinh.js"></script> -->
+  <!-- <script src="/tinh_tien_dien.js"></script> -->
+  <!-- <script src="./thue_ca_nhan.js"></script> -->
+   <script src="./tinh_tien_cap.js"></script>
+</body>
+
+</html>
